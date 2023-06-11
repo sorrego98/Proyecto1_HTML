@@ -2,5 +2,12 @@ const express = require(`express`);
 const path = require(`path`);
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, `../public`)));
-app.listen(3030, () => console.log(`Server Done`));
+//Puertos y enlaces
+const port = 3030;
+const publicPath = path.resolve(__dirname, `../public`);
+const indexPath = path.resolve(__dirname, `./views/index.html`);
+
+//Definición de métodos
+app.get(`/`, (req, res) => res.sendFile(indexPath));
+app.use(express.static(publicPath));
+app.listen(port, () => console.log(`Server Done`));
